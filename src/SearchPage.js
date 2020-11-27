@@ -1,8 +1,8 @@
 import { Link } from 'react-router-dom'
 import React, { Component } from 'react';
-import escapeRegExp from 'escape-string-regexp'
 import Book from './Book';
 import * as BooksAPI from './BooksAPI'
+
 
 
 
@@ -11,13 +11,13 @@ class SearchPage extends Component {
         query: '',
         searchResults: []
     }
-
+    
     updateQuery = (query) => {
-        this.setState({
-            query
-        })
+        this.setState({query})
         this.searchBooks(query);
     }
+
+    
     searchBooks = (query) => {
         if (query) {
             BooksAPI.search(query).then((searchResults) => {
@@ -29,16 +29,13 @@ class SearchPage extends Component {
 
             })
         } else {
-            this.setState({ searchResults: [] });
+            this.setState({ searchResults: [] })
+            
         }
 
     }
     render() {
-        if (this.state.query) {
-
-        } else {
-
-        }
+        
         return (
             <div className="search-books">
                 <div className="search-books-bar">
@@ -48,15 +45,25 @@ class SearchPage extends Component {
                         <input type="text"
                             placeholder="Search by title or author"
                             value={this.state.query}
-                            onChange={(event) => this.updateQuery(event.target.value)}
+                            onChange={
+                                
+                                (event) => this.updateQuery(event.target.value)
+                            
+                            }
                         />
 
                     </div>
                 </div>
                 <div className="search-books-results">
                     <ol className="books-grid">
+                       
                         {this.state.searchResults.map(searchResult => {
                             let shelf ="none";
+                            if(this.state.query === ''){
+                                return ( searchResult = [])
+                               
+                            }else{
+                                
                             this.props.books.map(book =>(
                                 book.id === searchResult.id ? shelf = book.shelf : ''
                             ));
@@ -68,6 +75,8 @@ class SearchPage extends Component {
                                         currentShelf={shelf} />
                                 </li>
                             );
+                            }
+                        
 
                         })
                         }

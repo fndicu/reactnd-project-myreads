@@ -1,11 +1,10 @@
 import React from 'react'
-import { BrowerRouter as Router, Switch, Route } from 'react-router-dom'
+import { Route } from 'react-router-dom'
 import './App.css'
 import BookShelf from './BookShelf'
 import * as BooksAPI from './BooksAPI'
 import SearchBooks from './SearchBooks'
 import SearchPage from './SearchPage'
-import Book from './Book'
 
 
 
@@ -23,11 +22,6 @@ class BooksApp extends React.Component {
       console.log(error)
     }
   }
-  // componentDidMount(){
-  //   BooksAPI.getAll().then((books) => {
-  //     this.setState({books})
-  //   })
-  // }
   updateShelf = (book, shelf) => {
     BooksAPI.update(book,shelf)
         BooksAPI.getAll().then((books) => {

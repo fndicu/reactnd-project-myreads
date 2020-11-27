@@ -1,13 +1,8 @@
 import React, { Component } from 'react'
 import Book from './Book'
-import { getAll } from './BooksAPI'
-import SearchPage from './SearchPage'
-// import * as BooksAPI from './BooksAPI'
 
 class BookShelf extends Component {
-  state = {
-
-  }
+  
 
   render() {
 
